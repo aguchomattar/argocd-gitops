@@ -16,6 +16,8 @@ spec:
         app: {{ .Chart.Name }}
         version: {{ .Chart.AppVersion }}
     spec:
+      imagePullSecrets:
+      - name: dockerhub-secret
       containers:
       - name: {{ .Chart.Name }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
