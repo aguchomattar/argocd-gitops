@@ -24,7 +24,7 @@ spec:
         # Aquí sobreescribes 'values.yaml'
         replicaCount: 1
         image:
-          repository: agucho/task-manager-frontend # Fija una imagen específica que sepas que funciona
+          repository: agucho/taskmanager-frontend # Fija una imagen específica que sepas que funciona
           tag: "v1" # cualquier tag de Docker que ya tengas
           
         service:
