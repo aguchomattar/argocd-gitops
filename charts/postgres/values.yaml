@@ -1,0 +1,31 @@
+replicaCount: 1
+
+image:
+  repository: postgres
+  tag: 15-alpine
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 5432
+
+env:
+  - name: POSTGRES_DB
+    value: "taskdb"
+  - name: POSTGRES_USER
+    value: "postgres"
+  - name: POSTGRES_PASSWORD
+    value: "postgres"
+
+persistence:
+  enabled: true
+  size: 5Gi
+  storageClass: ""
+
+resources:
+  requests:
+    memory: "256Mi"
+    cpu: "100m"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"

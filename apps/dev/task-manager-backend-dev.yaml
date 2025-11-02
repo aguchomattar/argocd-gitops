@@ -1,0 +1,40 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  # 1. EL NOMBRE DE TU APP EN ARGO CD
+  name: task-manager-backend-dev
+  namespace: argocd # Debe vivir en el namespace de Argo CD
+spec:
+  project: default
+
+  # 2. EL DESTINO (DÓNDE)
+  destination:
+    server: https://kubernetes.default.svc # 'kubernetes.default.svc' significa el mismo clúster
+    namespace: task-manager-dev           # El namespace donde vivirá tu app
+
+  # 3. LA FUENTE (EL QUÉ)
+  source:
+    repoURL: https://github.com/aguchomattar/argocd-gitops.git # Tu repo de Github
+    targetRevision: main # O 'main', la rama que Argo debe observar
+    path: charts/task-manager-backend # Apunta a la carpeta del Chart que creamos
+
+    # 4. LA SOBREESCRITURA (LOS VALORES ESPECÍFICOS PARA DEV)
+    helm:
+      values: |
+        # Aquí sobreescribes 'values.yaml'
+        replicaCount: 1
+        
+        image:
+          repository: agucho/task-manager-backend # Fija una imagen específica que sepas que funciona
+          tag: "v1" # cualquier tag de Docker que ya tengas
+          
+        service:
+          type: ClusterIP
+
+  # 5. POLÍTICA DE SINCRONIZACIÓN
+  syncPolicy: {}
+    # automated:
+    #   prune: true    # Borra recursos que ya no estén en Git
+    #   selfHeal: true # Repara si algo cambia en el clúster manualmente
+    # syncOptions:
+    #   - CreateNamespace=true # Crea el namespace 'task-manager-dev' si no existe

@@ -1,0 +1,47 @@
+replicaCount: 1
+
+image:
+  repository: agucho/taskmanager-backend
+  tag: v1
+  pullPolicy: Always
+
+service:
+  type: ClusterIP
+  port: 5000
+  targetPort: 5000
+
+env:
+  - name: DB_HOST
+    value: "postgres"
+  - name: DB_PORT
+    value: "5432"
+  - name: DB_NAME
+    value: "taskdb"
+  - name: DB_USER
+    value: "postgres"
+  - name: DB_PASSWORD
+    value: "postgres"
+  - name: PORT
+    value: "5000"
+
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
+  limits:
+    memory: "256Mi"
+    cpu: "200m"
+
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 5000
+  initialDelaySeconds: 30
+  periodSeconds: 10
+
+readinessProbe:
+  httpGet:
+    path: /health
+    port: 5000
+  initialDelaySeconds: 10
+  periodSeconds: 5

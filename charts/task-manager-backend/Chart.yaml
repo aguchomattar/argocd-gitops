@@ -1,0 +1,6 @@
+apiVersion: v2
+name: task-manager-backend
+description: Task Manager Backend API
+type: application
+version: 1.0.0
+appVersion: "v1"
