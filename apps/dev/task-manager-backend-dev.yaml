@@ -25,8 +25,8 @@ spec:
         replicaCount: 1
         
         image:
-          repository: agucho/taskmanager-backend # Fija una imagen específica que sepas que funciona
-          tag: "v1" # cualquier tag de Docker que ya tengas
+          repository: agucho/task-manager-backend # Fija una imagen específica que sepas que funciona
+          tag: "v0" # cualquier tag de Docker que ya tengas
           
         service:
           type: ClusterIP
