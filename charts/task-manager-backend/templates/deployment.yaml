@@ -4,7 +4,8 @@ metadata:
   name: {{ .Chart.Name }}
   labels:
     app: {{ .Chart.Name }}
-    version: {{ .Chart.AppVersion }}
+    # Usamos .Values.image.tag para que el Deployment.yaml cambie con el tag de la imagen
+    version: {{ .Values.image.tag | default .Chart.AppVersion }} 
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -14,29 +15,18 @@ spec:
     metadata:
       labels:
         app: {{ .Chart.Name }}
-        version: {{ .Chart.AppVersion }}
+        # Usar la variable de TAG en la etiqueta del POD
+        version: {{ .Values.image.tag | default .Chart.AppVersion }}
     spec:
       imagePullSecrets:
       - name: dockerhub-secret
       containers:
       - name: {{ .Chart.Name }}
-        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        # Esta línea estaba bien, pero la etiqueta asegura el reinicio.
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}" 
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: {{ .Values.service.targetPort }}
-        env:
-        {{- range .Values.env }}
-        - name: {{ .name }}
-          value: {{ .value | quote }}
-        {{- end }}
-        {{- if .Values.livenessProbe }}
-        livenessProbe:
-          {{- toYaml .Values.livenessProbe | nindent 10 }}
-        {{- end }}
-        {{- if .Values.readinessProbe }}
-        readinessProbe:
-          {{- toYaml .Values.readinessProbe | nindent 10 }}
-        {{- end }}
         {{- if .Values.resources }}
         resources:
           {{- toYaml .Values.resources | nindent 10 }}
