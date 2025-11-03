@@ -25,7 +25,7 @@ spec:
         replicaCount: 1
         image:
           repository: agucho/task-manager-frontend # Fija una imagen específica que sepas que funciona
-          tag: "v5" # cualquier tag de Docker que ya tengas
+          tag: "v6" # cualquier tag de Docker que ya tengas
           
         service:
           type: NodePort
