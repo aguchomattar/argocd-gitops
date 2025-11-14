@@ -26,7 +26,11 @@ spec:
         
         image:
           repository: agucho/task-manager-backend # Fija una imagen específica que sepas que funciona
+<<<<<<< HEAD
           tag: "v6" # tag de Docker que ya tengas
+=======
+          tag: "v7" # cualquier tag de Docker que ya tengas
+>>>>>>> 723bbd0d0a5f92b634a6009164f6ab2670f7cead
           
         service:
           type: ClusterIP
