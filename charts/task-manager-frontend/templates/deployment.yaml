@@ -22,7 +22,6 @@ spec:
       - name: dockerhub-secret
       containers:
       - name: {{ .Chart.Name }}
-        # Esta línea estaba bien, pero la etiqueta asegura el reinicio.
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}" 
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:

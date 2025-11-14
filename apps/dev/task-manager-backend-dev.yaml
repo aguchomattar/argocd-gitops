@@ -15,7 +15,7 @@ spec:
   # 3. LA FUENTE (EL QUÉ)
   source:
     repoURL: https://github.com/aguchomattar/argocd-gitops.git # Tu repo de Github
-    targetRevision: main # O 'main', la rama que Argo debe observar
+    targetRevision: main   # la rama que Argo debe observar
     path: charts/task-manager-backend # Apunta a la carpeta del Chart que creamos
 
     # 4. LA SOBREESCRITURA (LOS VALORES ESPECÍFICOS PARA DEV)
@@ -26,7 +26,7 @@ spec:
         
         image:
           repository: agucho/task-manager-backend # Fija una imagen específica que sepas que funciona
-          tag: "v6" # cualquier tag de Docker que ya tengas
+          tag: "v6" # tag de Docker que ya tengas
           
         service:
           type: ClusterIP
