@@ -1,0 +1,21 @@
+replicaCount: 1
+
+image:
+  repository: agucho/hermes-agent
+  tag: "v11"
+  pullPolicy: Always
+
+hostNetwork: true
+dnsPolicy: Default
+
+envFromSecrets:
+  - hermes-secrets
+  - telegram-creds
+
+resources:
+  requests:
+    memory: "400Mi"
+    cpu: "200m"
+  limits:
+    memory: "800Mi"
+    cpu: "500m"

@@ -1,0 +1,29 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hermes-agent-prod
+  namespace: argocd
+spec:
+  project: default
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: hermes-project
+
+  source:
+    repoURL: https://github.com/aguchomattar/argocd-gitops.git
+    targetRevision: main
+    path: charts/hermes-agent
+
+    helm:
+      values: |
+        image:
+          repository: agucho/hermes-agent
+          tag: "v11"
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
