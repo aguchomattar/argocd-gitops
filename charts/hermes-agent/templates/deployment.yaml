@@ -6,6 +6,7 @@ metadata:
     app: hermes
 spec:
   replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app: hermes
