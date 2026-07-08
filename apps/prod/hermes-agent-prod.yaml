@@ -19,7 +19,7 @@ spec:
       values: |
         image:
           repository: agucho/hermes-agent
-          tag: "a4f51ac"
+          tag: "8867fc6"
 
   syncPolicy:
     syncOptions:
