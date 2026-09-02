@@ -1,0 +1,9 @@
+sealed-secrets-key-backup.yaml
+*key-backup*.yaml
+
+*secret*.plain.yaml
+
+kubeseal
+*.tar.gz
+
+.DS_Store
