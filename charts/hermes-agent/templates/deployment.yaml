@@ -18,6 +18,10 @@ spec:
     spec:
       hostNetwork: {{ .Values.hostNetwork }}
       dnsPolicy: {{ .Values.dnsPolicy }}
+      {{- if .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml .Values.imagePullSecrets | nindent 8 }}
+      {{- end }}
       containers:
       - name: hermes-worker
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"

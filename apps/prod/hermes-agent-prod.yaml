@@ -18,7 +18,7 @@ spec:
     helm:
       values: |
         image:
-          repository: agucho/hermes-agent
+          repository: ghcr.io/aguchomattar/hermes-agent
           tag: "v12"
 
   syncPolicy:

@@ -1,9 +1,12 @@
 replicaCount: 1
 
 image:
-  repository: agucho/hermes-agent
-  tag: "v11"
+  repository: ghcr.io/aguchomattar/hermes-agent
+  tag: "v12"
   pullPolicy: Always
+
+imagePullSecrets:
+  - name: ghcr-pull-secret
 
 hostNetwork: true
 dnsPolicy: Default
