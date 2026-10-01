@@ -19,7 +19,7 @@ spec:
       values: |
         image:
           repository: ghcr.io/aguchomattar/hermes-agent
-          tag: "v12"
+          tag: "de7b38b"
 
   syncPolicy:
     syncOptions:
